@@ -1,0 +1,34 @@
+version: '3'
+services:
+    webserver:
+        build:
+            context: ../
+            dockerfile: ./docker/webserver/Dockerfile
+        ports:
+            - 8080:80
+        depends_on:
+            - db
+                # condition: service_healthy
+        # healthcheck:
+        #     test: nc -z db 5432
+    db:
+        image: postgres:12.3-alpine
+        ports:
+            - 5432:5432
+        restart: always
+        environment:
+            POSTGRES_DB: ${DATABASE_NAME}
+            POSTGRES_USER: ${DATABASE_USER}
+            POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+            PGDATA: /var/lib/postgresql/data/pgdata
+        volumes:
+            - ../db:/var/lib/postgresql/data
+        # healthcheck:
+        #     test: ["CMD", "pg_isready"]
+        #     timeout: 5s
+        #     retries: 3
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8081:8080
