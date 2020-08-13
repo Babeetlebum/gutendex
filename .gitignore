@@ -1,4 +1,6 @@
 *.pyc
 catalog_files
 gutendex/.env
+docker/.env
+docker/docker-compose.override.yml
 venv

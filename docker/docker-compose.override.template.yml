@@ -1,0 +1,21 @@
+version: '3'
+services:
+    webserver:
+        environment:
+            VIRTUAL_HOST: ${WEBSERVER_PREFIX}${COMPOSE_PROJECT_NAME}.${PROXY_HOSTNAME}
+        networks:
+            - default_local
+    static:
+        environment:
+            VIRTUAL_HOST: ${STATIC_PREFIX}${COMPOSE_PROJECT_NAME}.${PROXY_HOSTNAME}
+        networks:
+            - default_local
+    adminer:
+        environment:
+            VIRTUAL_HOST: ${ADMINER_PREFIX}${COMPOSE_PROJECT_NAME}.${PROXY_HOSTNAME}
+        networks:
+            - default_local
+
+networks:
+    default_local:
+        external: true

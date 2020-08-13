@@ -145,7 +145,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_ROOT = env('STATIC_ROOT')
-STATIC_URL = '/static/'
+STATIC_URL = "http://" + env('STATIC_PREFIX') + env('COMPOSE_PROJECT_NAME') + "." + env('PROXY_HOSTNAME')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 

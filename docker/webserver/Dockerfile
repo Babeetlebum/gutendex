@@ -7,6 +7,8 @@ WORKDIR /usr/src/app
 RUN apk add --no-cache postgresql-libs rsync && \
     apk add --no-cache --virtual .build-deps gcc musl-dev postgresql-dev
 
+RUN pip install --no-cache-dir gunicorn
+
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
@@ -19,7 +21,6 @@ RUN chmod +x /usr/local/bin/wait-for-postgres.sh
 
 COPY . .
 COPY docker/.env /usr/src/app/gutendex/.env
-
 
 SHELL ["/bin/bash", "-c"]
 

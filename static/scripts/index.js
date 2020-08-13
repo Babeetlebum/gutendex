@@ -6,7 +6,7 @@
 ;(function() {
   'use strict';
 
-  var SCRIPT_PREFIX = '/static/scripts/',
+  var SCRIPT_PREFIX = STATIC_URL + "/scripts/",
       SCRIPTS = ['api-explorer/get-results', 'api-explorer/index'],
       SUPPORTED_BROWSERS = [
         {name: 'chrome', version: 61},
