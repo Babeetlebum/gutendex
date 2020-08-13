@@ -4,18 +4,18 @@ services:
         environment:
             VIRTUAL_HOST: ${WEBSERVER_PREFIX}${COMPOSE_PROJECT_NAME}.${PROXY_HOSTNAME}
         networks:
-            - default_local
+            - reverseproxy_default
     static:
         environment:
             VIRTUAL_HOST: ${STATIC_PREFIX}${COMPOSE_PROJECT_NAME}.${PROXY_HOSTNAME}
         networks:
-            - default_local
+            - reverseproxy_default
     adminer:
         environment:
             VIRTUAL_HOST: ${ADMINER_PREFIX}${COMPOSE_PROJECT_NAME}.${PROXY_HOSTNAME}
         networks:
-            - default_local
+            - reverseproxy_default
 
 networks:
-    default_local:
+    reverseproxy_default:
         external: true
